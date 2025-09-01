@@ -72,10 +72,13 @@ Instead of a cluttered homepage, you'll be welcomed with the remembrance of Alla
 
 ## 🚀 Getting Started
 
-1. Clone this repository
-2. Open the homepage.html file in your browser
-3. Allow location access when prompted for accurate prayer times
-4. Customize settings as needed
+1. Download the extension from Releases then extract it.
+2. Open Google Chrome and , Go to `chrome://extensions/` or Or click the three dots (⋮) > More Tools > Extensions.
+3. Enable Developer Mode
+4. Click the "Load unpacked" button.
+5. Select the extracted folder.
+6. The Islamic Homepage extension will be added to your Chrome browser.
+
 
 ## 🔄 APIs Used
 
