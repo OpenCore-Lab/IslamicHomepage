@@ -72,12 +72,16 @@ Instead of a cluttered homepage, you'll be welcomed with the remembrance of Alla
 
 ## 🚀 Getting Started
 
-1. Download the extension from Releases then extract it.
-2. Open Google Chrome and , Go to `chrome://extensions/` or Or click the three dots (⋮) > More Tools > Extensions.
-3. Enable Developer Mode
-4. Click the "Load unpacked" button.
-5. Select the extracted folder.
-6. The Islamic Homepage extension will be added to your Chrome browser.
+
+1. Download the extension from Releases and extract it.
+2. Open Chrome and go to `chrome://extensions/` (or ⋮ > More Tools > Extensions).
+3. Enable Developer Mode.
+4. Click Load unpacked and select the extracted folder.
+5. The Islamic Homepage extension will be added.
+6. If the Customize Chrome bar appears at the bottom, click it → Hide footer on New Tab page.
+7. Allow Location Permission when prompted (needed for accurate prayer times).
+
+
 
 
 ## 🔄 APIs Used
