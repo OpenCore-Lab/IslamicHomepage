@@ -1,0 +1,1185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: white;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+    z-index: -2;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 60px 80px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Left Section - Time and Islamic Calendar */
+.left-section {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* Direct Time and Date Display */
+.current-time {
+    font-size: 4rem;
+    font-weight: 300;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.english-date {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.hijri-date-english {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+}
+
+/* Prayer Times Section */
+.prayer-times-section {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.location-status {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.location-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.location-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.detect-location-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.detect-location-btn:hover {
+    background: linear-gradient(135deg, #45a049, #4CAF50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.detect-location-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+}
+
+.location-setup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.location-input {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments for verse container and player */
+@media (max-width: 768px) {
+    .verse-container {
+        height: 350px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .verse-container {
+        height: 300px;
+        padding: 15px;
+    }
+    
+    .right-section {
+        padding: 15px;
+    }
+}
+
+.location-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.location-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+
+.set-location-btn, .auto-location-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.set-location-btn:hover, .auto-location-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.next-prayer {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prayer-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.next-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.prayer-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #FFD700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.at-label {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.prayer-time {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
+
+.time-remaining {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+.notify-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.notify-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.notify-btn.active {
+    background: rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+}
+
+/* All Prayer Times Section */
+.all-prayer-times {
+    margin-top: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prayer-times-title {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.prayer-times-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.prayer-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    min-height: 60px;
+}
+
+.prayer-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.prayer-info-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 80px;
+}
+
+.prayer-name-item {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.prayer-day {
+    font-size: 0.8rem;
+    color: rgba(255, 215, 0, 0.8);
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.prayer-info-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+
+.prayer-time-item {
+    font-size: 1.1rem;
+    color: #FFD700;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.prayer-remaining {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+    font-style: italic;
+}
+
+.prayer-remaining.passed {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.prayer-remaining.next {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 500;
+}
+
+.prayer-remaining.passed {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.prayer-remaining.next {
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 500;
+}
+
+.prayer-notify-btn {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.6);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prayer-notify-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.prayer-notify-btn.active {
+    background: rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.prayer-notify-btn.active:hover {
+    background: rgba(255, 215, 0, 0.4);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .prayer-times-section {
+        margin-top: 20px;
+    }
+    
+    .prayer-item {
+        padding: 12px;
+        min-height: 55px;
+    }
+    
+    .prayer-info-left {
+        min-width: 70px;
+    }
+    
+    .prayer-name-item {
+        font-size: 1rem;
+    }
+    
+    .prayer-time-item {
+        font-size: 1rem;
+    }
+    
+    .prayer-remaining {
+        font-size: 0.8rem;
+    }
+    
+    .prayer-day {
+        font-size: 0.75rem;
+    }
+    
+    .prayer-notify-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .prayer-item {
+        padding: 10px;
+        min-height: 50px;
+    }
+    
+    .prayer-info-left {
+        min-width: 60px;
+    }
+    
+    .prayer-name-item {
+        font-size: 0.95rem;
+    }
+    
+    .prayer-time-item {
+        font-size: 0.95rem;
+    }
+    
+    .prayer-remaining {
+        font-size: 0.75rem;
+    }
+    
+    .prayer-day {
+        font-size: 0.7rem;
+    }
+    
+    .prayer-notify-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Azan Modal */
+.azan-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+}
+
+.circular-animation {
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-outer {
+    width: 120px;
+    height: 120px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 3s linear infinite;
+}
+
+.circle-inner {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+.azan-info {
+    margin-bottom: 30px;
+}
+
+.azan-title {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.azan-time {
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.azan-message {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.modal-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.stop-btn, .salah-break-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stop-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.stop-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.salah-break-btn {
+    background: #FFD700;
+    color: #333;
+    border: 2px solid #FFD700;
+}
+
+.salah-break-btn:hover {
+    background: #FFC107;
+    transform: translateY(-2px);
+}
+
+/* Test Prayer Modal Styles */
+.test-prayer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.test-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.test-modal-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: modalSlideIn 0.6s ease-out, circularFloat 3s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.test-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: circularRotate 4s linear infinite;
+    z-index: -1;
+}
+
+.test-modal-header {
+    margin-bottom: 15px;
+}
+
+.test-prayer-title {
+    font-size: 2.2em;
+    margin: 8px 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.test-prayer-icon {
+    font-size: 2.5em;
+    animation: pulse 2s infinite, iconGlow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    margin-bottom: 8px;
+}
+
+.test-prayer-message {
+    font-size: 1em;
+    margin: 15px 0;
+    opacity: 0.9;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.test-modal-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.test-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.test-btn.stop-btn {
+    background: rgba(255, 71, 87, 0.3);
+    color: white;
+}
+
+.test-btn.stop-btn:hover {
+    background: rgba(255, 71, 87, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+}
+
+.test-btn.break-btn {
+    background: rgba(46, 213, 115, 0.3);
+    color: white;
+}
+
+.test-btn.break-btn:hover {
+    background: rgba(46, 213, 115, 0.5);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(46, 213, 115, 0.4);
+}
+
+@keyframes circularFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+@keyframes circularRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes iconGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Focus Mode */
+.focus-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.focus-content {
+    text-align: center;
+    color: white;
+}
+
+.prayer-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: gentle-glow 3s ease-in-out infinite;
+}
+
+@keyframes gentle-glow {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.focus-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.focus-content p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.focus-message {
+    font-style: italic;
+    opacity: 0.7;
+    margin-bottom: 30px !important;
+}
+
+.end-focus-btn {
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.end-focus-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Right Section - Quranic Verse */
+.right-section {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.verse-container {
+    width: 100%;
+    max-width: 500px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.verse-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    text-align: center;
+    direction: rtl;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 400;
+}
+
+.verse-english {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+    opacity: 0.95;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+.verse-reference {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+.refresh-verse {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.refresh-verse:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Quran Player Styles */
+.quran-player {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.player-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.player-header h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.surah-dropdown {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+.surah-dropdown option {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.surah-dropdown:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.verse-name {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    font-weight: 500;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.control-btn.play-pause {
+    width: 55px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.control-btn.auto-play-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.control-btn.auto-play-btn.active {
+    background: rgba(76, 175, 80, 0.3);
+    border: 1px solid rgba(76, 175, 80, 0.5);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.control-btn.auto-play-btn.active svg path {
+    opacity: 1;
+    fill: #4CAF50;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.progress-container {
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
+    width: 0%;
+    transition: width 0.1s ease;
+    border-radius: 3px;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: white;
+    opacity: 0.8;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+#quranAudio {
+    display: none;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 40px 60px;
+    }
+    
+    .current-time {
+        font-size: 3.5rem;
+    }
+    
+    .verse-arabic {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 30px;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+    
+    .left-section,
+    .right-section {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .right-section {
+        justify-content: center;
+    }
+    
+    .current-time {
+        font-size: 3rem;
+        text-align: center;
+    }
+    
+    .current-date,
+    .current-day {
+        text-align: center;
+    }
+    
+    .verse-container {
+        padding: 30px;
+    }
+    
+    .verse-arabic {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .current-time {
+        font-size: 2.5rem;
+    }
+    
+    .islamic-calendar,
+    .verse-container {
+        padding: 20px;
+    }
+    
+    .verse-arabic {
+        font-size: 1.2rem;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    opacity: 0.7;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+/* Fade in animation for content */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes circularSlideIn {
+    from {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}

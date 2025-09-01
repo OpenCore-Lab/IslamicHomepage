@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-container">
+        <div class="overlay"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Left Section: Time and Combined Date -->
+        <div class="left-section">
+            <div id="currentTime" class="current-time">Loading...</div>
+            <div id="englishDate" class="english-date">Loading...</div>
+            <div id="hijriDate" class="hijri-date-english">Loading...</div>
+            
+            <div class="prayer-times-section" id="prayerTimesSection">
+                <div class="location-status" id="locationStatus" style="display: none;">
+                    <span class="location-text">📍 Detecting location...</span>
+                </div>
+                
+                <div class="location-controls" id="locationControls" style="display: none;">
+                    <button id="detectLocationBtn" class="detect-location-btn">
+                        📍 Detect My Location
+                    </button>
+                </div>
+                
+                <div class="all-prayer-times" id="allPrayerTimes" style="display: none;">
+                    <h3 class="prayer-times-title">Today's Prayer Times</h3>
+                    <div id="locationInline" style="font-size: 0.8em; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px;">- Location: Detecting...</div>
+                    <div class="prayer-times-list">
+                        <div class="prayer-item">
+                            <div class="prayer-info-left">
+                                <span class="prayer-name-item">Fajr</span>
+                                <span id="fajrDay" class="prayer-day"></span>
+                            </div>
+                            <div class="prayer-info-center">
+                                <span id="fajrTime" class="prayer-time-item">--:--</span>
+                                <span id="fajrRemaining" class="prayer-remaining">--</span>
+                            </div>
+                            <button id="fajrNotify" class="prayer-notify-btn active" data-prayer="Fajr" title="Toggle Fajr notifications">🔔</button>
+                        </div>
+                        <div class="prayer-item">
+                            <div class="prayer-info-left">
+                                <span class="prayer-name-item">Dhuhr</span>
+                                <span id="dhuhrDay" class="prayer-day"></span>
+                            </div>
+                            <div class="prayer-info-center">
+                                <span id="dhuhrTime" class="prayer-time-item">--:--</span>
+                                <span id="dhuhrRemaining" class="prayer-remaining">--</span>
+                            </div>
+                            <button id="dhuhrNotify" class="prayer-notify-btn active" data-prayer="Dhuhr" title="Toggle Dhuhr notifications">🔔</button>
+                        </div>
+                        <div class="prayer-item">
+                            <div class="prayer-info-left">
+                                <span class="prayer-name-item">Asr</span>
+                                <span id="asrDay" class="prayer-day"></span>
+                            </div>
+                            <div class="prayer-info-center">
+                                <span id="asrTime" class="prayer-time-item">--:--</span>
+                                <span id="asrRemaining" class="prayer-remaining">--</span>
+                            </div>
+                            <button id="asrNotify" class="prayer-notify-btn active" data-prayer="Asr" title="Toggle Asr notifications">🔔</button>
+                        </div>
+                        <div class="prayer-item">
+                            <div class="prayer-info-left">
+                                <span class="prayer-name-item">Maghrib</span>
+                                <span id="maghribDay" class="prayer-day"></span>
+                            </div>
+                            <div class="prayer-info-center">
+                                <span id="maghribTime" class="prayer-time-item">--:--</span>
+                                <span id="maghribRemaining" class="prayer-remaining">--</span>
+                            </div>
+                            <button id="maghribNotify" class="prayer-notify-btn active" data-prayer="Maghrib" title="Toggle Maghrib notifications">🔔</button>
+                        </div>
+                        <div class="prayer-item">
+                            <div class="prayer-info-left">
+                                <span class="prayer-name-item">Isha</span>
+                                <span id="ishaDay" class="prayer-day"></span>
+                            </div>
+                            <div class="prayer-info-center">
+                                <span id="ishaTime" class="prayer-time-item">--:--</span>
+                                <span id="ishaRemaining" class="prayer-remaining">--</span>
+                            </div>
+                            <button id="ishaNotify" class="prayer-notify-btn active" data-prayer="Isha" title="Toggle Isha notifications">🔔</button>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+
+            </div>
+        </div>
+        
+        <!-- Right Section: Quranic Verse -->
+        <div class="right-section">
+            <!-- Verse Container -->
+            <div class="verse-container">
+                <div class="verse-arabic" id="verseArabic">Loading verse...</div>
+                <div class="verse-english" id="verseEnglish">Loading translation...</div>
+                <div class="verse-reference" id="verseReference">Loading reference...</div>
+                <button class="refresh-verse" id="refreshVerse" style="display: none;">New Verse</button>
+            </div>
+            
+            <!-- Quran Player -->
+            <div class="quran-player" id="quranPlayer">
+                <div class="player-header">
+                    <h3>Quran Recitation</h3>
+                    <select class="surah-dropdown" id="surahDropdown">
+                        <option value="1">1. Al-Fatiha</option>
+                        <option value="2">2. Al-Baqarah</option>
+                        <option value="3">3. Ali 'Imran</option>
+                        <option value="4">4. An-Nisa</option>
+                        <option value="5">5. Al-Ma'idah</option>
+                        <option value="6">6. Al-An'am</option>
+                        <option value="7">7. Al-A'raf</option>
+                        <option value="8">8. Al-Anfal</option>
+                        <option value="9">9. At-Tawbah</option>
+                        <option value="10">10. Yunus</option>
+                        <option value="11">11. Hud</option>
+                        <option value="12">12. Yusuf</option>
+                        <option value="13">13. Ar-Ra'd</option>
+                        <option value="14">14. Ibrahim</option>
+                        <option value="15">15. Al-Hijr</option>
+                        <option value="16">16. An-Nahl</option>
+                        <option value="17">17. Al-Isra</option>
+                        <option value="18">18. Al-Kahf</option>
+                        <option value="19">19. Maryam</option>
+                        <option value="20">20. Taha</option>
+                        <option value="21">21. Al-Anbya</option>
+                        <option value="22">22. Al-Hajj</option>
+                        <option value="23">23. Al-Mu'minun</option>
+                        <option value="24">24. An-Nur</option>
+                        <option value="25">25. Al-Furqan</option>
+                        <option value="26">26. Ash-Shu'ara</option>
+                        <option value="27">27. An-Naml</option>
+                        <option value="28">28. Al-Qasas</option>
+                        <option value="29">29. Al-'Ankabut</option>
+                        <option value="30">30. Ar-Rum</option>
+                        <option value="31">31. Luqman</option>
+                        <option value="32">32. As-Sajdah</option>
+                        <option value="33">33. Al-Ahzab</option>
+                        <option value="34">34. Saba</option>
+                        <option value="35">35. Fatir</option>
+                        <option value="36">36. Ya-Sin</option>
+                        <option value="37">37. As-Saffat</option>
+                        <option value="38">38. Sad</option>
+                        <option value="39">39. Az-Zumar</option>
+                        <option value="40">40. Ghafir</option>
+                        <option value="41">41. Fussilat</option>
+                        <option value="42">42. Ash-Shuraa</option>
+                        <option value="43">43. Az-Zukhruf</option>
+                        <option value="44">44. Ad-Dukhan</option>
+                        <option value="45">45. Al-Jathiyah</option>
+                        <option value="46">46. Al-Ahqaf</option>
+                        <option value="47">47. Muhammad</option>
+                        <option value="48">48. Al-Fath</option>
+                        <option value="49">49. Al-Hujurat</option>
+                        <option value="50">50. Qaf</option>
+                        <option value="51">51. Adh-Dhariyat</option>
+                        <option value="52">52. At-Tur</option>
+                        <option value="53">53. An-Najm</option>
+                        <option value="54">54. Al-Qamar</option>
+                        <option value="55">55. Ar-Rahman</option>
+                        <option value="56">56. Al-Waqi'ah</option>
+                        <option value="57">57. Al-Hadid</option>
+                        <option value="58">58. Al-Mujadila</option>
+                        <option value="59">59. Al-Hashr</option>
+                        <option value="60">60. Al-Mumtahanah</option>
+                        <option value="61">61. As-Saff</option>
+                        <option value="62">62. Al-Jumu'ah</option>
+                        <option value="63">63. Al-Munafiqun</option>
+                        <option value="64">64. At-Taghabun</option>
+                        <option value="65">65. At-Talaq</option>
+                        <option value="66">66. At-Tahrim</option>
+                        <option value="67">67. Al-Mulk</option>
+                        <option value="68">68. Al-Qalam</option>
+                        <option value="69">69. Al-Haqqah</option>
+                        <option value="70">70. Al-Ma'arij</option>
+                        <option value="71">71. Nuh</option>
+                        <option value="72">72. Al-Jinn</option>
+                        <option value="73">73. Al-Muzzammil</option>
+                        <option value="74">74. Al-Muddaththir</option>
+                        <option value="75">75. Al-Qiyamah</option>
+                        <option value="76">76. Al-Insan</option>
+                        <option value="77">77. Al-Mursalat</option>
+                        <option value="78">78. An-Naba</option>
+                        <option value="79">79. An-Nazi'at</option>
+                        <option value="80">80. 'Abasa</option>
+                        <option value="81">81. At-Takwir</option>
+                        <option value="82">82. Al-Infitar</option>
+                        <option value="83">83. Al-Mutaffifin</option>
+                        <option value="84">84. Al-Inshiqaq</option>
+                        <option value="85">85. Al-Buruj</option>
+                        <option value="86">86. At-Tariq</option>
+                        <option value="87">87. Al-A'la</option>
+                        <option value="88">88. Al-Ghashiyah</option>
+                        <option value="89">89. Al-Fajr</option>
+                        <option value="90">90. Al-Balad</option>
+                        <option value="91">91. Ash-Shams</option>
+                        <option value="92">92. Al-Layl</option>
+                        <option value="93">93. Ad-Duhaa</option>
+                        <option value="94">94. Ash-Sharh</option>
+                        <option value="95">95. At-Tin</option>
+                        <option value="96">96. Al-'Alaq</option>
+                        <option value="97">97. Al-Qadr</option>
+                        <option value="98">98. Al-Bayyinah</option>
+                        <option value="99">99. Az-Zalzalah</option>
+                        <option value="100">100. Al-'Adiyat</option>
+                        <option value="101">101. Al-Qari'ah</option>
+                        <option value="102">102. At-Takathur</option>
+                        <option value="103">103. Al-'Asr</option>
+                        <option value="104">104. Al-Humazah</option>
+                        <option value="105">105. Al-Fil</option>
+                        <option value="106">106. Quraysh</option>
+                        <option value="107">107. Al-Ma'un</option>
+                        <option value="108">108. Al-Kawthar</option>
+                        <option value="109">109. Al-Kafirun</option>
+                        <option value="110">110. An-Nasr</option>
+                        <option value="111">111. Al-Masad</option>
+                        <option value="112">112. Al-Ikhlas</option>
+                        <option value="113">113. Al-Falaq</option>
+                        <option value="114">114. An-Nas</option>
+                    </select>
+                    <div class="verse-name" id="currentVerseName">Loading...</div>
+                </div>
+                <div class="player-controls">
+                    <button class="control-btn" id="prevBtn" title="Previous Verse">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 20L9 12L19 4V20Z" fill="currentColor"/>
+                            <path d="M5 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn play-pause" id="playPauseBtn" title="Play/Pause">
+                        <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                        </svg>
+                        <svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <path d="M6 4H10V20H6V4Z" fill="currentColor"/>
+                            <path d="M14 4H18V20H14V4Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn" id="nextBtn" title="Next Verse">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 4L15 12L5 20V4Z" fill="currentColor"/>
+                            <path d="M19 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="control-btn auto-play-btn" id="autoPlayBtn" title="Auto-play: Off">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor" opacity="0.3"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="quranCurrentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
+                    </div>
+                </div>
+                <audio id="quranAudio" preload="metadata"></audio>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Settings Button -->
+    <div class="settings-button" id="settingsBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.2579 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.01127 9.77251C4.28054 9.5799 4.48571 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+    
+    <!-- Azan Notification Modal -->
+    <div id="azanModal" class="azan-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="circular-animation">
+                <div class="circle-outer">
+                    <div class="circle-inner"></div>
+                </div>
+            </div>
+            <div class="azan-info">
+                <h2 id="azanTitle" class="azan-title">Asr Prayer Time</h2>
+                <p id="azanTime" class="azan-time">5:15 PM</p>
+                <p class="azan-message">It's time for prayer</p>
+            </div>
+            <div class="modal-controls">
+                <button id="stopAzanBtn" class="stop-btn">Stop</button>
+                <button id="takeSalahBreakBtn" class="salah-break-btn">Take a break for Salah</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Prayer Modal -->
+    <div id="testPrayerModal" class="test-prayer-modal" style="display: none;">
+        <div class="test-modal-overlay"></div>
+        <div class="test-modal-content">
+            <div class="test-modal-header">
+                <h2 class="test-prayer-title">Waqt</h2>
+                <div class="test-prayer-icon">🕌</div>
+            </div>
+            <div class="test-modal-body">
+                <p class="test-prayer-message">Prayer time notification test</p>
+                <div class="test-modal-controls">
+                    <button id="testStopBtn" class="test-btn stop-btn">Stop</button>
+                    <button id="testBreakBtn" class="test-btn break-btn">Take a break for Salah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Focus Mode Overlay -->
+    <div id="focusMode" class="focus-mode" style="display: none;">
+        <div class="focus-content">
+            <div class="prayer-icon">🕌</div>
+            <h2>Prayer Time</h2>
+            <p>User is performing Salah</p>
+            <p class="focus-message">Everything is paused</p>
+            <button id="endFocusBtn" class="end-focus-btn">End Focus Mode</button>
+        </div>
+    </div>
+
+    <audio id="azanAudio" preload="auto">
+        <source src="azan_all.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="azanFajrAudio" preload="auto">
+        <source src="azan_fajr.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

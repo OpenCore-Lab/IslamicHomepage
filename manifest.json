@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Islamic Homepage",
+  "version": "1.0",
+  "description": "Beautiful Islamic homepage with Quranic verses, Islamic calendar, and aesthetic wallpapers",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.alquran.cloud/*",
+    "https://api.aladhan.com/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "homepage.html"
+  },
+  "action": {
+    "default_popup": "settings.html",
+    "default_title": "Islamic Homepage Settings"
+  },
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
